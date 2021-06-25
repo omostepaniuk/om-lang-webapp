@@ -20,8 +20,9 @@ class ContentBundle extends React.Component {
 
   render() {
     return (
-      <div className={`bundle-item ${this.state.isExpanded ? 'expanded' : ''}`}>
-        <h1 className="bundle-name" onClick={this.toggleBundle}>{this.props.bundle.name}</h1>
+      <div className={`bundle-item`}>
+        <h1 className={`bundle-name ${this.state.isExpanded ? 'expanded' : ''}`}
+            onClick={this.toggleBundle}>{this.props.bundle.name}</h1>
         <ContentChunks chunks={this.props.bundle.chunks}/>
       </div>
     );
