@@ -1,6 +1,6 @@
 import React from 'react';
 import  './ContentBundle.scss';
-import { ContentChunks } from './ContentChunks';
+import ContentChunks from './ContentChunks';
 
 class ContentBundle extends React.Component {
 
@@ -23,7 +23,7 @@ class ContentBundle extends React.Component {
       <div className={`bundle-item`}>
         <h1 className={`bundle-name ${this.state.isExpanded ? 'expanded' : ''}`}
             onClick={this.toggleBundle}>{this.props.bundle.name}</h1>
-        <ContentChunks chunks={this.props.bundle.chunks}/>
+        <ContentChunks bundle={this.props.bundle}/>
       </div>
     );
   }

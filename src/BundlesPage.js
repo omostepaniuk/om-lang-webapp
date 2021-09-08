@@ -2,8 +2,10 @@ import React from 'react';
 import { baseUrl } from './config';
 import axios from 'axios';
 import BundlesList from './bundles/BundlesList';
+import { Route, Switch } from 'react-router-dom';
+import { Chunk } from './bundles/Chunk';
 
-class BundlesPage extends React.Component{
+class BundlesPage extends React.Component {
 
   constructor(props, context) {
     super(props, context);
@@ -17,7 +19,6 @@ class BundlesPage extends React.Component{
   componentDidMount() {
     axios.get(`${baseUrl}/bundles`)
       .then(response => {
-        // console.log(response);
         this.setState({
           bundles: response.data
         })
@@ -36,7 +37,16 @@ class BundlesPage extends React.Component{
       content = <p>No Content Loaded</p>
     }
 
-    return content;
+    return (
+      <Switch>
+        <Route exact path={`/bundles/:bundleName/chunks/:chunkOrder`}>
+          <Chunk bundles={this.state.bundles}/>
+        </Route>
+        <Route exact path="/bundles">
+          {content}
+        </Route>
+      </Switch>
+    );
   }
 }
 
