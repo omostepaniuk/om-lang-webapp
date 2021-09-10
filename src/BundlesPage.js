@@ -3,7 +3,7 @@ import { apiUrl } from './config';
 import axios from 'axios';
 import BundlesList from './bundles/BundlesList';
 import { Route, Switch } from 'react-router-dom';
-import { Chunk } from './bundles/Chunk';
+import Chunk from './bundles/Chunk';
 
 class BundlesPage extends React.Component {
 
@@ -30,7 +30,7 @@ class BundlesPage extends React.Component {
   render() {
     let content;
     if (this.state.error) {
-      content = <p className="error">An Error occurred</p>;
+      content = <p className="error">An Error occurred while loading content bundles</p>;
     } else if (this.state.bundles.length) {
       content = <BundlesList bundles={this.state.bundles}/>
     } else {
