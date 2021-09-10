@@ -1,5 +1,5 @@
 import React from 'react';
-import { baseUrl } from './config';
+import { apiUrl } from './config';
 import axios from 'axios';
 import BundlesList from './bundles/BundlesList';
 import { Route, Switch } from 'react-router-dom';
@@ -17,7 +17,7 @@ class BundlesPage extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`${baseUrl}/bundles`)
+    axios.get(`${apiUrl}/bundles`)
       .then(response => {
         this.setState({
           bundles: response.data
