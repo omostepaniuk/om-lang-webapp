@@ -20,8 +20,17 @@ const Chunk = (props) => {
 
   return (
     <div className={'chunk-container'}>
-      <h1 className={'bundle-title'}>{chunk.bundle}</h1>
-      <h2 className={'words-count'}>Words: {chunk.chunk.words.length}</h2>
+      <div className={'top-section'}>
+        <h1 className={'bundle-title'}>{chunk.bundle}</h1>
+        <h2 className={'words-count'}>Words: {chunk.chunk.words.length}</h2>
+      </div>
+      <div className="middle-section">
+
+      </div>
+      <div className="bottom-section">
+        <button className={'button button-left'}>Previous</button>
+        <button className={'button button-right'}>Next</button>
+      </div>
     </div>
   )
 
