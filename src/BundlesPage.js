@@ -2,7 +2,7 @@ import React from 'react';
 import { apiUrl } from './config';
 import axios from 'axios';
 import BundlesList from './bundles/BundlesList';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Chunk from './bundles/Chunk';
 
 class BundlesPage extends React.Component {
@@ -38,14 +38,10 @@ class BundlesPage extends React.Component {
     }
 
     return (
-      <Switch>
-        <Route exact path={`/bundles/:bundleName/chunks/:chunkOrder`}>
-          <Chunk bundles={this.state.bundles}/>
-        </Route>
-        <Route exact path="/bundles">
-          {content}
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path={`:bundleName/chunks/:chunkOrder`} element={<Chunk bundles={this.state.bundles}/>}/>
+        <Route path="" element={content}/>
+      </Routes>
     );
   }
 }
