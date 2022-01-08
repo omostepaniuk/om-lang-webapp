@@ -1,0 +1,16 @@
+.nav {
+  height: 40px;
+
+  .nav-list {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    height: 100%;
+
+    .nav-list-item {
+      margin: 0 10px;
+    }
+  }
+}
