@@ -1,59 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { apiUrl } from './config';
 import axios from 'axios';
 import BundlesList from './bundles/BundlesList';
 import { Route, Routes } from 'react-router-dom';
 import ContentBundle from './bundles/ContentBundle';
 
-/* TODO convert to a function component */
-class BundlesPage extends React.Component {
+const BundlesPage = () => {
+  const [bundles, setBundles] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      isLoading: true,
-      bundles: [],
-      error: null
-    };
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     axios.get(`${apiUrl}/bundles`)
       .then(response => {
-        this.setState({
-          isLoading: false,
-          bundles: response.data
-        })
+        setIsLoading(false);
+        setBundles(response.data);
       }, error => {
-        this.setState({ isLoading: false, error: true });
+        setIsLoading(false);
+        setError(true);
       });
-  }
+  }, []);
 
-  render() {
-    return (
-      <>
-        <Routes>
-          {/*<Route path=":bundleName/chunks/:chunkOrder" element={<Chunk bundles={this.state.bundles}/>}/>*/}
-          <Route path={":bundleName/chunks"} element={<ContentBundle bundles={this.state.bundles}/>}/>
-          <Route index element={
-            <BundlesList
-              bundles={this.state.bundles}
-              isLoading={this.state.isLoading}
-              isLoadingError={this.state.error}/>}/>
-          {/*<Route path="" element={content}/>*/}
-        </Routes>
+  return (
+    <>
+      <Routes>
+        {/*<Route path=":bundleName/chunks/:chunkOrder" element={<Chunk bundles={this.state.bundles}/>}/>*/}
+        <Route path={":bundleName/chunks"} element={<ContentBundle bundles={bundles}/>}/>
+        <Route index element={
+          <BundlesList
+            bundles={bundles}
+            isLoading={isLoading}
+            isLoadingError={error}/>}/>
+        {/*<Route path="" element={content}/>*/}
+      </Routes>
 
-        {this.state.loading &&
-          <p>Loading content bundles...</p>
-        }
+      {isLoading &&
+        <p>Loading content bundles...</p>
+      }
 
-        {!this.state.loading && this.error &&
-          <p>An error occurred while loading content bundles. Please try again later...</p>
-        }
-      </>
-    );
-  }
+      {!isLoading && error &&
+        <p>An error occurred while loading content bundles. Please try again later...</p>
+      }
+    </>
+  );
 }
 
 export default BundlesPage;
