@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { apiUrl } from './config';
+import { apiUrl } from '../config';
 import axios from 'axios';
-import BundlesList from './bundles/BundlesList';
+import BundlesList from './BundlesList';
 import { Route, Routes } from 'react-router-dom';
-import ContentBundle from './bundles/ContentBundle';
+import ContentBundle from './ContentBundle';
 
 const BundlesPage = () => {
   const [bundles, setBundles] = useState();

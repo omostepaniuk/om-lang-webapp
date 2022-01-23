@@ -1,5 +1,5 @@
 import './App.css';
-import BundlesPage from './BundlesPage';
+import BundlesPage from './bundles/BundlesPage';
 import { Route, Routes } from 'react-router-dom';
 import { Home } from './Home';
 import { Layout } from './Layout';
