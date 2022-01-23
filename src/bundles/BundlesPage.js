@@ -4,6 +4,7 @@ import axios from 'axios';
 import BundlesList from './BundlesList';
 import { Route, Routes } from 'react-router-dom';
 import ContentBundle from './ContentBundle';
+import { NoMatch } from '../NoMatch';
 
 const BundlesPage = () => {
   const [bundles, setBundles] = useState();
@@ -24,14 +25,13 @@ const BundlesPage = () => {
   return (
     <>
       <Routes>
-        {/*<Route path=":bundleName/chunks/:chunkOrder" element={<Chunk bundles={this.state.bundles}/>}/>*/}
-        <Route path={":bundleName/chunks"} element={<ContentBundle bundles={bundles}/>}/>
+        <Route path={":bundleName/chunks/*"} element={<ContentBundle bundles={bundles}/>}/>
         <Route index element={
           <BundlesList
             bundles={bundles}
             isLoading={isLoading}
             isLoadingError={error}/>}/>
-        {/*<Route path="" element={content}/>*/}
+        <Route path="*" element={<NoMatch/>}/>
       </Routes>
 
       {isLoading &&

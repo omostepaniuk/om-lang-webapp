@@ -1,49 +1,33 @@
 import './Chunk.scss'
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 
 const Chunk = (props) => {
-  const { bundleName: bundleSlug, chunkOrder } = useParams();
-  const [isLoading, setIsLoading] = useState(false);
-  const [chunk, setChunk] = useState(null);
+  const { chunkOrder } = useParams();
+  const { chunks } = props;
+  const chunk = findChunk(chunks, chunkOrder);
 
-  useEffect(() => {
-    setChunk(findChunk(props.bundles, bundleSlug, chunkOrder));
-    setIsLoading(!props.bundles);
-  }, [props.bundles]);
+  return <>
+    {!!chunk &&
+      <div className={'chunk-container'}>
+        <div className={'top-section'}>
+          <h2 className={'words-count'}>Words: {chunk.words.length}</h2>
+        </div>
+        <div className="middle-section">
 
-  if (isLoading) {
-    return <div>Loading Chunk...</div>
-  } else if (!chunk) {
-    return <div>No Chunk with a given id was found for a given bundle</div>
-  }
-
-  return (
-    <div className={'chunk-container'}>
-      <div className={'top-section'}>
-        <h1 className={'bundle-title'}>{chunk.bundle}</h1>
-        <h2 className={'words-count'}>Words: {chunk.chunk.words.length}</h2>
+        </div>
+        <div className="bottom-section">
+          <button className={'button button-left'}>Previous</button>
+          <button className={'button button-right'}>Next</button>
+        </div>
       </div>
-      <div className="middle-section">
+    }
+  </>
 
-      </div>
-      <div className="bottom-section">
-        <button className={'button button-left'}>Previous</button>
-        <button className={'button button-right'}>Next</button>
-      </div>
-    </div>
-  )
-
-  function findChunk(bundles, bundleSlug, chunkOrder) {
+  function findChunk(chunks, chunkOrder) {
     let chunk = null;
-    if (bundles) {
-      const bundle = bundles.find(bundle => bundle.slug === bundleSlug);
-      if (bundle) {
-        chunk = {
-          bundle: bundle.name,
-          chunk: bundle.chunks.find(chunk => `${chunk.order}` === chunkOrder)
-        };
-      }
+    if (chunks) {
+      chunk = chunks.find(chunk => `${chunk.order}` === chunkOrder);
     }
 
     return chunk;
