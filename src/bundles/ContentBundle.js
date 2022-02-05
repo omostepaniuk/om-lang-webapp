@@ -1,15 +1,14 @@
 import React from 'react';
-import { useParams, Route, Routes } from 'react-router-dom';
-import ContentChunks from './ContentChunks';
-import Chunk from './Chunk';
+import { useParams, useOutletContext, Outlet } from 'react-router-dom';
 import './ContentBundle.scss';
 
-const ContentBundle = (props) => {
+const ContentBundle = () => {
   const { bundleName } = useParams();
+  const bundles = useOutletContext();
 
   let bundle = null;
-  if (props.bundles?.length ?? false) {
-    bundle = props.bundles.find(bundle => bundle.slug === bundleName);
+  if (bundles?.length ?? false) {
+    bundle = bundles.find(bundle => bundle.slug === bundleName);
   }
 
   return <>
@@ -17,10 +16,7 @@ const ContentBundle = (props) => {
       ?
       <div className={`bundle-item`}>
         <h1 className={`bundle-name`}>{bundle.name}</h1>
-        <Routes>
-          <Route path={":chunkOrder"} element={<Chunk chunks={bundle?.chunks}/>}/>
-          <Route index element={<ContentChunks chunks={bundle?.chunks}/>}/>
-        </Routes>
+        <Outlet context={bundle}/>
       </div>
       : null
     }

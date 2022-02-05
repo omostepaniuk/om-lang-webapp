@@ -1,14 +1,16 @@
 import React from 'react';
 import './ContentChunks.scss';
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 
-const ContentChunks = (props) => {
+const ContentChunks = () => {
+  const bundle = useOutletContext();
+
   return <>
-    {props?.chunks?.length
+    {bundle?.chunks?.length
       ?
       <ul className="chunks-list">
         {
-          props.chunks.map(chunk => (
+          bundle.chunks.map(chunk => (
             <li className="chunk-list-item" key={chunk.order.toString()}>
               <Link to={`${chunk.order}`}>Chunk - {chunk.order.toString()}</Link>
             </li>

@@ -10,7 +10,7 @@ export function Layout() {
             <Link to="/">Home</Link>
           </li>
           <li className="nav-list-item">
-            <Link to="/bundles">Bundles</Link>
+            <Link to="/bundles">Content</Link>
           </li>
         </ul>
       </nav>

@@ -1,16 +1,17 @@
 import React from 'react';
 import './BundlesList.scss';
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 
 const BundlesList = (props) => {
+  const bundles = useOutletContext();
   let content;
 
-  if (props?.bundles?.length ?? false) {
+  if (bundles?.length ?? false) {
     content =
       <>
-        <h1 className="header">Content Bundles ({props.bundles.length})</h1>
+        <h1 className="header">Content Bundles ({bundles.length})</h1>
         <ul className="bundles-list">{
-          props.bundles.map(bundle => {
+          bundles.map(bundle => {
             return (
               <li key={bundle.order.toString()}>
                 <Link to={`${bundle.slug}/chunks`}>{bundle.name}</Link>
@@ -22,7 +23,6 @@ const BundlesList = (props) => {
   } else {
     content = null;
   }
-
 
   return content;
 }
