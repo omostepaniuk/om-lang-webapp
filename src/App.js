@@ -14,18 +14,18 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Layout/>}>
-          <Route index element={<Home/>}/>
-          <Route path="bundles" element={<BundlesPage/>}>
-            <Route index element={<BundlesList/>}/>
-            <Route path=":bundleName/chunks" element={<ContentBundle/>}>
-              <Route index element={<ContentChunks/>}/>
-              <Route path=":chunkOrder" element={<MemorizationPage/>}>
-                <Route path="words/:wordOrder" element={<Word/>}/>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="bundles" element={<BundlesPage />}>
+            <Route index element={<BundlesList />} />
+            <Route path=":bundleName/chunks" element={<ContentBundle />}>
+              <Route index element={<ContentChunks />} />
+              <Route path=":chunkOrder" element={<MemorizationPage />}>
+                <Route path="words/:wordOrder" element={<Word />} />
               </Route>
             </Route>
           </Route>
-          <Route path="*" element={<NoMatch/>}/>
+          <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
     </div>

@@ -15,7 +15,7 @@ export function Layout() {
         </ul>
       </nav>
       <div>
-        <Outlet/>
+        <Outlet />
       </div>
     </div>
   );

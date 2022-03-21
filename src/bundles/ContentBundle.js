@@ -8,19 +8,19 @@ const ContentBundle = () => {
 
   let bundle = null;
   if (bundles?.length ?? false) {
-    bundle = bundles.find(bundle => bundle.slug === bundleName);
+    bundle = bundles.find((bundle) => bundle.slug === bundleName);
   }
 
-  return <>
-    {!!bundle
-      ?
-      <div className={`bundle-item`}>
-        <h1 className={`bundle-name`}>{bundle.name}</h1>
-        <Outlet context={bundle}/>
-      </div>
-      : null
-    }
-  </>
-}
+  return (
+    <>
+      {!!bundle ? (
+        <div className={`bundle-item`}>
+          <h1 className={`bundle-name`}>{bundle.name}</h1>
+          <Outlet context={bundle} />
+        </div>
+      ) : null}
+    </>
+  );
+};
 
 export default ContentBundle;

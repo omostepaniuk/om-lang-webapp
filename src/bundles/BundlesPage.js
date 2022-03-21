@@ -9,28 +9,31 @@ const BundlesPage = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    axios.get(`${apiUrl}/bundles`)
-      .then(response => {
+    axios.get(`${apiUrl}/bundles`).then(
+      (response) => {
         setIsLoading(false);
         setBundles(response.data);
-      }, error => {
+      },
+      (error) => {
         setIsLoading(false);
         setError(true);
-      });
+      }
+    );
   }, []);
 
   return (
     <>
-      {isLoading &&
-        <p>Loading content bundles...</p>
-      }
+      {isLoading && <p>Loading content bundles...</p>}
 
-      {!isLoading && error &&
-        <p>An error occurred while loading content bundles. Please try again later...</p>
-      }
-      <Outlet context={bundles}/>
+      {!isLoading && error && (
+        <p>
+          An error occurred while loading content bundles. Please try again
+          later...
+        </p>
+      )}
+      <Outlet context={bundles} />
     </>
   );
-}
+};
 
 export default BundlesPage;
