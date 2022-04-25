@@ -12,14 +12,14 @@ const ContentBundle = () => {
   }
 
   return (
-    <>
+    <div className={'content-bundle'}>
       {!!bundle ? (
         <div className={`bundle-item`}>
           <h1 className={`bundle-name`}>{bundle.name}</h1>
           <Outlet context={bundle} />
         </div>
       ) : null}
-    </>
+    </div>
   );
 };
 

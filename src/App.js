@@ -9,6 +9,9 @@ import ContentBundle from './bundles/ContentBundle';
 import ContentChunks from './bundles/ContentChunks';
 import MemorizationPage from './bundles/memorization/MemorizationPage';
 import Word from './bundles/memorization/Word';
+import { AppRoutes } from './config/routes';
+
+const { bundles: bundleRoutes } = AppRoutes;
 
 function App() {
   return (
@@ -16,11 +19,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="bundles" element={<BundlesPage />}>
+          <Route path={bundleRoutes.pathPattern} element={<BundlesPage />}>
             <Route index element={<BundlesList />} />
-            <Route path=":bundleName/chunks" element={<ContentBundle />}>
+            <Route path={bundleRoutes.children.bundleChunks.pathPattern} element={<ContentBundle />}>
               <Route index element={<ContentChunks />} />
-              <Route path=":chunkOrder" element={<MemorizationPage />}>
+              <Route path={bundleRoutes.children.bundleChunks.children.chunk.pathPattern} element={<MemorizationPage />}>
                 <Route path="words/:wordOrder" element={<Word />} />
               </Route>
             </Route>

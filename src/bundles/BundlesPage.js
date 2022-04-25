@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { apiUrl } from '../config';
 import axios from 'axios';
 import { Outlet } from 'react-router-dom';
+import Breadcrumbs from '../shared/breadcrumbs/Breadcrumbs';
 
 const BundlesPage = () => {
   const [bundles, setBundles] = useState();
@@ -22,7 +23,8 @@ const BundlesPage = () => {
   }, []);
 
   return (
-    <>
+    <div className={'bundles-page'}>
+      <Breadcrumbs {...{path: '/', name: 'Home'}} />
       {isLoading && <p>Loading content bundles...</p>}
 
       {!isLoading && error && (
@@ -32,7 +34,7 @@ const BundlesPage = () => {
         </p>
       )}
       <Outlet context={bundles} />
-    </>
+    </div>
   );
 };
 
