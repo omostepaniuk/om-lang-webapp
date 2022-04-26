@@ -1,0 +1,51 @@
+.chunk-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
+
+  .top-section {
+  }
+
+  .middle-section {
+  }
+
+  .bottom-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    padding: 5px 0;
+
+    .button {
+      flex: 0 0 auto;
+
+      &.button-left {
+        margin: 0 5px 0 0;
+      }
+
+      &.button-right {
+        margin: 0 0 0 5px;
+
+        &:only-child {
+          margin-left: auto;
+        }
+      }
+    }
+  }
+}
+
+.words-count {
+  margin-top: 0;
+
+  text-align: left;
+}
+
+.words-count {
+  margin-bottom: 12px;
+
+  font-family: DejaVu Sans Mono, sans-serif;
+  font-size: 14px;
+}

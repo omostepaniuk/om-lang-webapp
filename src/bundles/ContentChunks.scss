@@ -1,0 +1,21 @@
+.chunks-list {
+  margin: 0;
+  padding: 0;
+
+  list-style-type: none;
+
+  .chunk-list-item {
+    & > a {
+      display: inline-block;
+
+      box-sizing: border-box;
+      padding: 0.5rem 1rem;
+      width: 100%;
+
+      &,
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}

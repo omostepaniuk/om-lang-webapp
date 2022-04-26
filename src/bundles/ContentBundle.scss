@@ -1,0 +1,30 @@
+.bundle-item {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  box-sizing: border-box;
+  height: 100%;
+  padding: 0 0 0 0.25rem;
+
+  border-left: none;
+  border-right: none;
+
+  color: #212529;
+  font-family: sans-serif;
+  text-align: left;
+
+  .bundle-name {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0.75rem 1rem 0.75rem 0;
+    overflow-x: hidden;
+
+    font-size: 14px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    text-transform: uppercase;
+  }
+}
