@@ -1,0 +1,44 @@
+$btn-height: 38px;
+$btn-primary-color: #33C3F0;
+$btn-primary-font-color: #FFF;
+$btn-secondary-color: #BBB;
+$btn-secondary-font-color: #555;
+
+.btn {
+  display: inline-block;
+
+  height: $btn-height;
+  padding: 0 30px;
+  border: 1px solid;
+  border-radius: 4px;
+
+  font-size: 11px;
+  line-height: $btn-height;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.btn-primary {
+  background-color: $btn-primary-color;
+  border-color: $btn-primary-color;
+  color: $btn-primary-font-color;
+}
+
+.btn-primary-outline {
+  background-color: #FFF;
+  border-color: $btn-primary-color;
+  color: $btn-primary-color;
+}
+
+.btn-secondary {
+  background-color: $btn-secondary-color;
+  border-color: $btn-secondary-color;
+  color: #FFF;
+}
+
+.btn-secondary-outline {
+  background-color: #FFF;
+  border-color: $btn-secondary-color;
+  color: $btn-secondary-font-color;
+}

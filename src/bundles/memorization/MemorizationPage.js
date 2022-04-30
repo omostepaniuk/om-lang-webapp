@@ -1,5 +1,5 @@
 import './MemorizationPage.scss';
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link, Outlet, useOutletContext } from 'react-router-dom';
 import { isDefined } from '../../utils/utils';
 import ToggleButton from '../../shared/toggle-button/ToggleButton';
@@ -7,6 +7,8 @@ import { getValue, setValue } from '../../utils/local-storage.utils';
 
 const MemorizationPage = () => {
   const bundle = useOutletContext();
+  const [direction, setDirection] = useState(getTranslationDirection(bundle.name, bundle.direction));
+  const [showTranslation, setShowTranslation] = useState(false);
   let { chunkOrder, wordOrder } = useParams();
 
   const chunk = findChunk(bundle, chunkOrder);
@@ -22,34 +24,32 @@ const MemorizationPage = () => {
           <div className={'top-section'}>
             <h2 className={'words-count'}>Words: {chunk.words.length}</h2>
             <div className={'translation-direction-switch'}>
+              {/* TODO - hardcoded direction settings, to be replaced by data-driven approach */}
               <ToggleButton
                 left={{ label: 'ES-EN', value: 'ES-EN' }}
                 right={{ label: 'EN-ES', value: 'EN-ES' }}
-                value={getTranslationDirection(bundle.name, bundle.direction)}
+                value={direction}
                 onChange={direction => setTranslationDirection(bundle.name, direction)}/>
             </div>
           </div>
           <div className="middle-section">
-            <Outlet context={chunk.words} />
+            {/* TODO hardcoded comparison against concrete lang pair */}
+            <Outlet context={{ words: chunk.words, settings: { isReverseDirection: direction !== 'ES-EN', showTranslation } }} />
           </div>
           <div className="bottom-section">
             {isWordScreen ? (
               <>
                 {wordOrder > 1 && (
-                  <Link
-                    to={`words/${wordOrder - 1}`}
-                    className={'button button-left'}
-                  >
-                    Previous
-                  </Link>
+                  <Button type={'link'} buttonStyle={'secondaryOutline'}
+                          title={'Previous'} toLink={`words/${wordOrder - 1}`}/>
                 )}
+                <Button type={'button'} buttonStyle={'primary'}
+                        title={showTranslation ? 'Hide' : 'Show'}
+                        onClick={() => setShowTranslation(!showTranslation)}/>
+
                 {wordOrder < chunk.words.length && (
-                  <Link
-                    to={`words/${wordOrder + 1}`}
-                    className={'button button-right'}
-                  >
-                    Next
-                  </Link>
+                  <Button type={'link'} buttonStyle={'secondaryOutline'}
+                          title={'Next'} toLink={`words/${wordOrder + 1}`}/>
                 )}
               </>
             ) : (
@@ -75,6 +75,7 @@ const MemorizationPage = () => {
     value.direction = direction;
 
     setValue(bundleName, value);
+    setDirection(direction);
   }
 
   function getTranslationDirection(bundleName, defaultDirection) {
