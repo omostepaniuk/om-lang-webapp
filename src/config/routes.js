@@ -44,7 +44,7 @@ export function buildBreadcrumbsTree(startNode, matchTree = {}, parentPath = '',
   matchTree[prefixPath] = {
     label,
     paramNames: [...segments, ...paramNames],
-    breadcrumbUrl: parentPath
+    breadcrumbUrl: parentPath || '/'
   }
 
   return matchTree;
