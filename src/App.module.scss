@@ -1,8 +1,16 @@
+body {
+  margin: 0;
+}
+
 .App {
   box-sizing: border-box;
   height: 100%;
 
   text-align: center;
+
+  // hack to prevent parent container to be pushed down if child has top margin
+  padding-top: 1px;
+  margin-top: -1px;
 }
 
 .App-logo {

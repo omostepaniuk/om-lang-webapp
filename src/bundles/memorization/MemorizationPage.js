@@ -4,6 +4,13 @@ import { useParams, Link, Outlet, useOutletContext } from 'react-router-dom';
 import { isDefined } from '../../utils/utils';
 import ToggleButton from '../../shared/toggle-button/ToggleButton';
 import { getValue, setValue } from '../../utils/local-storage.utils';
+import Button from '../../shared/button/Button';
+
+// TODO we need UI solution for two similar use cases
+//  - a way to show / hide translation for a particular word while scrolling through the words
+//  - a way to set configuration to permanently show / hide words
+//  That could be done via sliding drawer which contains screen-specific settings (probably a challenging task to
+//  implement with my react knowledge) - for now we'll only support in-place show/hide button
 
 const MemorizationPage = () => {
   const bundle = useOutletContext();
@@ -23,14 +30,16 @@ const MemorizationPage = () => {
         <div className={'chunk-container'}>
           <div className={'top-section'}>
             <h2 className={'words-count'}>Words: {chunk.words.length}</h2>
-            <div className={'translation-direction-switch'}>
-              {/* TODO - hardcoded direction settings, to be replaced by data-driven approach */}
-              <ToggleButton
-                left={{ label: 'ES-EN', value: 'ES-EN' }}
-                right={{ label: 'EN-ES', value: 'EN-ES' }}
-                value={direction}
-                onChange={direction => setTranslationDirection(bundle.name, direction)}/>
+            {isWordScreen &&
+              <div className={'translation-direction-switch'}>
+                {/* TODO - hardcoded direction settings, to be replaced by data-driven approach */}
+                <ToggleButton
+                  left={{ label: 'ES-EN', value: 'ES-EN' }}
+                  right={{ label: 'EN-ES', value: 'EN-ES' }}
+                  value={direction}
+                  onChange={direction => setTranslationDirection(bundle.name, direction)}/>
             </div>
+            }
           </div>
           <div className="middle-section">
             {/* TODO hardcoded comparison against concrete lang pair */}

@@ -1,0 +1,11 @@
+@import 'colors.scss';
+@import 'variables.scss';
+
+
+.bundlesPage {
+  height: 100%;
+}
+
+.bundlesPageContent {
+  height: calc(100% - #{$breadcrumbs-height});
+}

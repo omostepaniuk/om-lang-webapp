@@ -1,4 +1,4 @@
-import './App.css';
+import styles from './App.module.scss';
 import BundlesPage from './bundles/BundlesPage';
 import { Route, Routes } from 'react-router-dom';
 import { Home } from './Home';
@@ -15,7 +15,7 @@ const { bundles: bundleRoutes } = AppRoutes;
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

@@ -1,4 +1,4 @@
-import './Breadcrumbs.scss';
+import styles from './Breadcrumbs.module.scss';
 import { Link, useLocation, matchRoutes, generatePath } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { AppRoutes, buildBreadcrumbsTree } from '../../config/routes';
@@ -41,8 +41,8 @@ const Breadcrumbs = (props) => {
 
   return <>
     {breadcrumb &&
-      <div>
-        Breadcrumbs: <Link to={breadcrumb.path} state={breadcrumb.params}>{breadcrumb.name}</Link>
+      <div className={styles.container}>
+        Back to <Link to={breadcrumb.path} state={breadcrumb.params}>{breadcrumb.name}</Link>
       </div>
     }
   </>

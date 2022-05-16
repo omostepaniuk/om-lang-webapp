@@ -3,6 +3,7 @@ import { apiUrl } from '../config';
 import axios from 'axios';
 import { Outlet } from 'react-router-dom';
 import Breadcrumbs from '../shared/breadcrumbs/Breadcrumbs';
+import styles from './BundlesPage.module.scss';
 
 const BundlesPage = () => {
   const [bundles, setBundles] = useState();
@@ -23,17 +24,21 @@ const BundlesPage = () => {
   }, []);
 
   return (
-    <div className={'bundles-page'}>
-      <Breadcrumbs {...{path: '/', name: 'Home'}} />
-      {isLoading && <p>Loading content bundles...</p>}
+    <div className={styles.bundlesPage}>
+      <div className={styles.breadcrumbs}>
+        <Breadcrumbs {...{ path: '/', name: 'Home' }}/>
+      </div>
+      <div className={styles.bundlesPageContent}>
+        {isLoading && <p>Loading content bundles...</p>}
 
-      {!isLoading && error && (
-        <p>
-          An error occurred while loading content bundles. Please try again
-          later...
-        </p>
-      )}
-      <Outlet context={bundles} />
+        {!isLoading && error && (
+          <p>
+            An error occurred while loading content bundles. Please try again
+            later...
+          </p>
+        )}
+        <Outlet context={bundles}/>
+      </div>
     </div>
   );
 };

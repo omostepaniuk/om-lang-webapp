@@ -1,0 +1,35 @@
+@import 'styles/variables';
+
+.header {
+  background-color: #282c34;
+  height: $navbar-height;
+  line-height: $navbar-height;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+
+  .navList {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    height: 100%;
+
+    .navListItem {
+      margin: 0 10px;
+      font-size: 16px;
+
+      & > a {
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.container {
+  height: calc(100% - #{$navbar-height});
+  margin-top: $navbar-height;
+}
